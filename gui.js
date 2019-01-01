@@ -16,5 +16,21 @@ document.onkeydown = function(e){
 	if(game.board_stringify() != startGame){
 		game.addNewNum();
 	}
-	console.log(game.board_stringify());
+	displayBoard();
 }
+function displayBoard(){
+	var newHTML = "";
+	game.board.forEach(function(row){
+		row.forEach(function(spot){
+			var className = "";
+			if(spot == ""){
+				spot = "<span style='color:transparent'>0</span>";
+			}else{
+				className = "num" + spot;
+			}
+			newHTML += "<div class='" + className + "'>" + spot + "</div>";
+		});
+	});
+	document.querySelector("div.game").innerHTML = newHTML;
+}
+displayBoard();
