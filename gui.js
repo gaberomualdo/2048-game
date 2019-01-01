@@ -32,5 +32,9 @@ function displayBoard(){
 		});
 	});
 	document.querySelector("div.game").innerHTML = newHTML;
+	if(game.check_gameover()){
+		alert("Game Over. Try Again.");
+		window.location.reload();
+	}
 }
 displayBoard();

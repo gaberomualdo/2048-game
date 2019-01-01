@@ -187,8 +187,32 @@ var game = {
 				boardClone = rotateMatrixCounterClockwise(boardClone);
 		}
 		this.board = JSON.parse(JSON.stringify(boardClone));
+	},
+	check_gameover: function(){
+		var gamemover = true;
+		var currentBoard = JSON.stringify(this.board);
+		this.move("left");
+		if(this.board != JSON.parse(currentBoard)){
+			gamemover = false;
+		}
+		this.board = JSON.parse(currentBoard);
+		this.move("right");
+		if(this.board != JSON.parse(currentBoard)){
+			gamemover = false;
+		}
+		this.board = JSON.parse(currentBoard);
+		this.move("up");
+		if(this.board != JSON.parse(currentBoard)){
+			gamemover = false;
+		}
+		this.board = JSON.parse(currentBoard);
+		this.move("down");
+		if(this.board != JSON.parse(currentBoard)){
+			gamemover = false;
+		}
+		this.board = JSON.parse(currentBoard);
+		return gamemover;
 	}
 }
 
 game.addNewNum();
-console.log(game.board_stringify());
