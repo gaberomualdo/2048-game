@@ -1,3 +1,17 @@
+const flipMatrix = matrix => (
+	matrix[0].map((column, index) => (
+		matrix.map(row => row[index])
+	))
+);
+
+const rotateMatrix = matrix => (
+	flipMatrix(matrix.reverse())
+);
+
+const rotateMatrixCounterClockwise = matrix => (
+	flipMatrix(matrix).reverse()
+);
+
 var game = {
 	// Board Array
 	board: [
@@ -109,7 +123,68 @@ var game = {
 				});
 				break;
 			case "up":
-				
+				boardClone = rotateMatrix(boardClone);
+				boardClone.forEach(function(row, row_index){
+					var condensedRow = [];
+					row.forEach(function(spot){
+						if(spot != ""){
+							condensedRow.push(spot);
+						}
+					});
+					condensedRow.reverse();
+					condensedRow.forEach(function(spot, spot_index){
+						if(spot == condensedRow[spot_index + 1] && spot != ""){
+							condensedRow[spot_index] = spot * 2;
+							condensedRow[spot_index + 1] = "";
+						}
+					});
+					var returnRow = [];
+					condensedRow.forEach(function(spot){
+						if(spot != ""){
+							returnRow.push(spot);
+						}
+					});
+					boardClone[row_index].forEach(function(spot, spot_index){
+						if(returnRow[spot_index]){
+							boardClone[row_index][spot_index] = returnRow[spot_index];
+						}else{
+							boardClone[row_index][spot_index] = "";
+						}
+					});
+					boardClone[row_index].reverse();
+				});
+				boardClone = rotateMatrixCounterClockwise(boardClone);
+				break;
+			case "down":
+				boardClone = rotateMatrix(boardClone);
+				boardClone.forEach(function(row, row_index){
+					var condensedRow = [];
+					row.forEach(function(spot){
+						if(spot != ""){
+							condensedRow.push(spot);
+						}
+					});
+					condensedRow.forEach(function(spot, spot_index){
+						if(spot == condensedRow[spot_index + 1] && spot != ""){
+							condensedRow[spot_index] = spot * 2;
+							condensedRow[spot_index + 1] = "";
+						}
+					});
+					var returnRow = [];
+					condensedRow.forEach(function(spot){
+						if(spot != ""){
+							returnRow.push(spot);
+						}
+					});
+					boardClone[row_index].forEach(function(spot, spot_index){
+						if(returnRow[spot_index]){
+							boardClone[row_index][spot_index] = returnRow[spot_index];
+						}else{
+							boardClone[row_index][spot_index] = "";
+						}
+					});
+				});
+				boardClone = rotateMatrixCounterClockwise(boardClone);
 		}
 		this.board = JSON.parse(JSON.stringify(boardClone));
 	}
