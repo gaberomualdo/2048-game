@@ -97,11 +97,3 @@ div.game > div.num2 {
     @media screen and (max-width: 520px) {
       div.game > div.num2048 {
         font-size: 15px; } }
-@media (max-width: 550px){
-	div.container {
-		width: 100%;
-	}
-	div.game {
-		height: calc(100vw - 2rem);
-	}
-}
