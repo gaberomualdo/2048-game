@@ -44,7 +44,7 @@ var game = {
 		});
 		var newNumSpot = openSpots[Math.floor(Math.random() * openSpots.length)];
 		var number = Math.random() < 0.9 ? 2 : 4;
-		this.board[newNumSpot[0]][newNumSpot[1]] = number.toString();
+		this.board[newNumSpot[0]][newNumSpot[1]] = number;
 	},
 	board_stringify: function(){
 		newBoard = JSON.parse(JSON.stringify(this.board));
@@ -192,22 +192,22 @@ var game = {
 		var gamemover = true;
 		var currentBoard = JSON.stringify(this.board);
 		this.move("left");
-		if(this.board != JSON.parse(currentBoard)){
+		if(JSON.stringify(this.board) != currentBoard){
 			gamemover = false;
 		}
 		this.board = JSON.parse(currentBoard);
 		this.move("right");
-		if(this.board != JSON.parse(currentBoard)){
+		if(JSON.stringify(this.board) != currentBoard){
 			gamemover = false;
 		}
 		this.board = JSON.parse(currentBoard);
 		this.move("up");
-		if(this.board != JSON.parse(currentBoard)){
+		if(JSON.stringify(this.board) != currentBoard){
 			gamemover = false;
 		}
 		this.board = JSON.parse(currentBoard);
 		this.move("down");
-		if(this.board != JSON.parse(currentBoard)){
+		if(JSON.stringify(this.board) != currentBoard){
 			gamemover = false;
 		}
 		this.board = JSON.parse(currentBoard);
