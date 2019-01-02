@@ -216,3 +216,4 @@ var game = {
 }
 
 game.addNewNum();
+game.addNewNum();
