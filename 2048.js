@@ -60,10 +60,9 @@ var game = {
 		return newBoard;
 	},
 	move: function(direction){
-		boardClone = JSON.parse(JSON.stringify(this.board));
 		switch(direction){
 			case "left":
-				boardClone.forEach(function(row, row_index){
+				game.board.forEach(function(row, row_index){
 					var condensedRow = [];
 					row.forEach(function(spot){
 						if(spot != ""){
@@ -82,17 +81,17 @@ var game = {
 							returnRow.push(spot);
 						}
 					});
-					boardClone[row_index].forEach(function(spot, spot_index){
+					game.board[row_index].forEach(function(spot, spot_index){
 						if(returnRow[spot_index]){
-							boardClone[row_index][spot_index] = returnRow[spot_index];
+							game.board[row_index][spot_index] = returnRow[spot_index];
 						}else{
-							boardClone[row_index][spot_index] = "";
+							game.board[row_index][spot_index] = "";
 						}
 					});
 				});
 				break;
 			case "right":
-				boardClone.forEach(function(row, row_index){
+				game.board.forEach(function(row, row_index){
 					var condensedRow = [];
 					row.forEach(function(spot){
 						if(spot != ""){
@@ -112,19 +111,19 @@ var game = {
 							returnRow.push(spot);
 						}
 					});
-					boardClone[row_index].forEach(function(spot, spot_index){
+					game.board[row_index].forEach(function(spot, spot_index){
 						if(returnRow[spot_index]){
-							boardClone[row_index][spot_index] = returnRow[spot_index];
+							game.board[row_index][spot_index] = returnRow[spot_index];
 						}else{
-							boardClone[row_index][spot_index] = "";
+							game.board[row_index][spot_index] = "";
 						}
 					});
-					boardClone[row_index].reverse();
+					game.board[row_index].reverse();
 				});
 				break;
 			case "up":
-				boardClone = rotateMatrix(boardClone);
-				boardClone.forEach(function(row, row_index){
+				game.board = rotateMatrix(game.board);
+				game.board.forEach(function(row, row_index){
 					var condensedRow = [];
 					row.forEach(function(spot){
 						if(spot != ""){
@@ -144,20 +143,20 @@ var game = {
 							returnRow.push(spot);
 						}
 					});
-					boardClone[row_index].forEach(function(spot, spot_index){
+					game.board[row_index].forEach(function(spot, spot_index){
 						if(returnRow[spot_index]){
-							boardClone[row_index][spot_index] = returnRow[spot_index];
+							game.board[row_index][spot_index] = returnRow[spot_index];
 						}else{
-							boardClone[row_index][spot_index] = "";
+							game.board[row_index][spot_index] = "";
 						}
 					});
-					boardClone[row_index].reverse();
+					game.board[row_index].reverse();
 				});
-				boardClone = rotateMatrixCounterClockwise(boardClone);
+				game.board = rotateMatrixCounterClockwise(game.board);
 				break;
 			case "down":
-				boardClone = rotateMatrix(boardClone);
-				boardClone.forEach(function(row, row_index){
+				game.board = rotateMatrix(game.board);
+				game.board.forEach(function(row, row_index){
 					var condensedRow = [];
 					row.forEach(function(spot){
 						if(spot != ""){
@@ -176,17 +175,16 @@ var game = {
 							returnRow.push(spot);
 						}
 					});
-					boardClone[row_index].forEach(function(spot, spot_index){
+					game.board[row_index].forEach(function(spot, spot_index){
 						if(returnRow[spot_index]){
-							boardClone[row_index][spot_index] = returnRow[spot_index];
+							game.board[row_index][spot_index] = returnRow[spot_index];
 						}else{
-							boardClone[row_index][spot_index] = "";
+							game.board[row_index][spot_index] = "";
 						}
 					});
 				});
-				boardClone = rotateMatrixCounterClockwise(boardClone);
+				game.board = rotateMatrixCounterClockwise(game.board);
 		}
-		this.board = JSON.parse(JSON.stringify(boardClone));
 	},
 	check_gameover: function(){
 		var gamemover = true;
